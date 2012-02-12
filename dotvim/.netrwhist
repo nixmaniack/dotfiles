@@ -1,0 +1,9 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =7
+let g:netrw_dirhist_1='/usr/share/debhelper/dh_make/licenses'
+let g:netrw_dirhist_2='/home/muneeb/projects/debian/debian-in/dh-make-font'
+let g:netrw_dirhist_3='/tmp/ListContacs'
+let g:netrw_dirhist_4='/home/muneeb/packaging/eeyek/fonts-eeyek_1.0/debian'
+let g:netrw_dirhist_5='/tmp/screenkey-0.2/debian'
+let g:netrw_dirhist_6='/home/muneeb/projects/github/Cinnamon-installed/Cinnamon/js/ui'
+let g:netrw_dirhist_7='/home/muneeb/projects/github/Cinnamon-installed/Cinnamon/files/usr/share/cinnamon/applets/trash@cinnamon.org'

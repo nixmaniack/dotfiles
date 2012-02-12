@@ -1,0 +1,224 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>~/.vim/colors/vividchalk.vim.html</title>
+<meta name="Generator" content="Vim/7.3">
+<meta name="plugin-version" content="vim7.3_v6">
+<meta name="syntax" content="vim">
+<meta name="settings" content="use_css,number_lines">
+<style type="text/css">
+<!--
+pre { font-family: monospace; color: #eeeeee; background-color: #000000; }
+body { font-family: monospace; color: #eeeeee; background-color: #000000; }
+.lnr { color: #ddeeff; background-color: #222222; }
+.Todo { color: #0000ff; background-color: #ffff00; }
+.Normal { color: #eeeeee; background-color: #000000; }
+.Constant { color: #339999; }
+.Type { color: #aaaa77; }
+.String { color: #66ff00; }
+.Special { color: #33aa00; }
+.Identifier { color: #ffcc00; }
+.Statement { color: #ff6600; }
+.PreProc { color: #aaffff; }
+.Comment { color: #9933cc; font-style: italic; }
+-->
+</style>
+</head>
+<body>
+<pre>
+<span class="lnr">  1 </span><span class="Comment">&quot; Vim color scheme</span>
+<span class="lnr">  2 </span><span class="Comment">&quot;</span> <span class="PreProc">Name:</span><span class="Comment">         vividchalk.vim</span>
+<span class="lnr">  3 </span><span class="Comment">&quot;</span> <span class="PreProc">Author:</span><span class="Comment">       Tim Pope &lt;vimNOSPAM@tpope.info&gt;</span>
+<span class="lnr">  4 </span><span class="Comment">&quot;</span> <span class="PreProc">Version:</span><span class="Comment">      2.0</span>
+<span class="lnr">  5 </span><span class="Comment">&quot;</span> <span class="PreProc">GetLatestVimScripts:</span><span class="Comment"> 1891 1 :AutoInstall: vividchalk.vim</span>
+<span class="lnr">  6 </span>
+<span class="lnr">  7 </span><span class="Comment">&quot; Based on the Vibrank Ink theme for TextMate</span>
+<span class="lnr">  8 </span><span class="Comment">&quot; Distributable under the same terms as Vim itself (see :help license)</span>
+<span class="lnr">  9 </span>
+<span class="lnr"> 10 </span><span class="Statement">if</span> <span class="Identifier">has</span><span class="Special">(</span><span class="String">&quot;gui_running&quot;</span><span class="Special">)</span>
+<span class="lnr"> 11 </span>    <span class="Statement">set</span> <span class="PreProc">background</span>=dark
+<span class="lnr"> 12 </span><span class="Statement">endif</span>
+<span class="lnr"> 13 </span><span class="Statement">hi</span> clear
+<span class="lnr"> 14 </span><span class="Statement">if</span> <span class="Identifier">exists</span><span class="Special">(</span><span class="String">&quot;syntax_on&quot;</span><span class="Special">)</span>
+<span class="lnr"> 15 </span>   <span class="Statement">syntax</span> <span class="Type">reset</span>
+<span class="lnr"> 16 </span><span class="Statement">endif</span>
+<span class="lnr"> 17 </span>
+<span class="lnr"> 18 </span><span class="Statement">let</span> colors_name <span class="Statement">=</span> <span class="String">&quot;vividchalk&quot;</span>
+<span class="lnr"> 19 </span>
+<span class="lnr"> 20 </span><span class="Comment">&quot; First two functions adapted from inkpot.vim</span>
+<span class="lnr"> 21 </span>
+<span class="lnr"> 22 </span><span class="Comment">&quot; map a urxvt cube number to an xterm-256 cube number</span>
+<span class="lnr"> 23 </span><span class="Statement">fun</span>! <span class="Special">s:</span>M<span class="Special">(</span>a<span class="Special">)</span>
+<span class="lnr"> 24 </span>    <span class="Statement">return</span> <span class="Identifier">strpart</span><span class="Special">(</span><span class="String">&quot;0245&quot;</span>, <span class="Identifier">a:a</span>, <span class="Constant">1</span><span class="Special">)</span> <span class="Statement">+</span> <span class="Constant">0</span>
+<span class="lnr"> 25 </span><span class="Statement">endfun</span>
+<span class="lnr"> 26 </span>
+<span class="lnr"> 27 </span><span class="Comment">&quot; map a urxvt colour to an xterm-256 colour</span>
+<span class="lnr"> 28 </span><span class="Statement">fun</span>! <span class="Special">s:</span><span class="Statement">X</span><span class="Special">(</span>a<span class="Special">)</span>
+<span class="lnr"> 29 </span>    <span class="Statement">if</span> &amp;t_Co <span class="Statement">==</span> <span class="Constant">88</span>
+<span class="lnr"> 30 </span>        <span class="Statement">return</span> <span class="Identifier">a:a</span>
+<span class="lnr"> 31 </span>    <span class="Statement">else</span>
+<span class="lnr"> 32 </span>        <span class="Statement">if</span> <span class="Identifier">a:a</span> <span class="Statement">==</span> <span class="Constant">8</span>
+<span class="lnr"> 33 </span>            <span class="Statement">return</span> <span class="Constant">237</span>
+<span class="lnr"> 34 </span>        <span class="Statement">elseif</span> <span class="Identifier">a:a</span> <span class="Statement">&lt;</span> <span class="Constant">16</span>
+<span class="lnr"> 35 </span>            <span class="Statement">return</span> <span class="Identifier">a:a</span>
+<span class="lnr"> 36 </span>        <span class="Statement">elseif</span> <span class="Identifier">a:a</span> <span class="Statement">&gt;</span> <span class="Constant">79</span>
+<span class="lnr"> 37 </span>            <span class="Statement">return</span> <span class="Constant">232</span> <span class="Statement">+</span> <span class="Special">(</span><span class="Constant">3</span> * <span class="Special">(</span><span class="Identifier">a:a</span> <span class="Statement">-</span> <span class="Constant">80</span><span class="Special">))</span>
+<span class="lnr"> 38 </span>        <span class="Statement">else</span>
+<span class="lnr"> 39 </span>            <span class="Statement">let</span> l:<span class="Statement">b</span> <span class="Statement">=</span> <span class="Identifier">a:a</span> <span class="Statement">-</span> <span class="Constant">16</span>
+<span class="lnr"> 40 </span>            <span class="Statement">let</span> l:<span class="Statement">x</span> <span class="Statement">=</span> l:b <span class="Identifier">%</span> <span class="Constant">4</span>
+<span class="lnr"> 41 </span>            <span class="Statement">let</span> l:<span class="Statement">y</span> <span class="Statement">=</span> <span class="Special">(</span>l:b / <span class="Constant">4</span><span class="Special">)</span> <span class="Identifier">%</span> <span class="Constant">4</span>
+<span class="lnr"> 42 </span>            <span class="Statement">let</span> l:z <span class="Statement">=</span> <span class="Special">(</span>l:b / <span class="Constant">16</span><span class="Special">)</span>
+<span class="lnr"> 43 </span>            <span class="Statement">return</span> <span class="Constant">16</span> <span class="Statement">+</span> <span class="Normal">s:M</span><span class="Special">(</span>l:x<span class="Special">)</span> <span class="Statement">+</span> <span class="Special">(</span><span class="Constant">6</span> * <span class="Normal">s:M</span><span class="Special">(</span>l:y<span class="Special">))</span> <span class="Statement">+</span> <span class="Special">(</span><span class="Constant">36</span> * <span class="Normal">s:M</span><span class="Special">(</span>l:z<span class="Special">))</span>
+<span class="lnr"> 44 </span>        <span class="Statement">endif</span>
+<span class="lnr"> 45 </span>    <span class="Statement">endif</span>
+<span class="lnr"> 46 </span><span class="Statement">endfun</span>
+<span class="lnr"> 47 </span>
+<span class="lnr"> 48 </span><span class="Statement">function</span>! E2T<span class="Special">(</span>a<span class="Special">)</span>
+<span class="lnr"> 49 </span>    <span class="Statement">return</span> <span class="Normal">s:X</span><span class="Special">(</span><span class="Identifier">a:a</span><span class="Special">)</span>
+<span class="lnr"> 50 </span><span class="Statement">endfunction</span>
+<span class="lnr"> 51 </span>
+<span class="lnr"> 52 </span><span class="Statement">function</span>! <span class="Special">s:</span>choose<span class="Special">(</span>mediocre,good<span class="Special">)</span>
+<span class="lnr"> 53 </span>    <span class="Statement">if</span> &amp;t_Co <span class="Statement">!=</span> <span class="Constant">88</span> <span class="Statement">&amp;&amp;</span> &amp;t_Co <span class="Statement">!=</span> <span class="Constant">256</span>
+<span class="lnr"> 54 </span>        <span class="Statement">return</span> <span class="Identifier">a:mediocre</span>
+<span class="lnr"> 55 </span>    <span class="Statement">else</span>
+<span class="lnr"> 56 </span>        <span class="Statement">return</span> <span class="Normal">s:X</span><span class="Special">(</span><span class="Identifier">a:good</span><span class="Special">)</span>
+<span class="lnr"> 57 </span>    <span class="Statement">endif</span>
+<span class="lnr"> 58 </span><span class="Statement">endfunction</span>
+<span class="lnr"> 59 </span>
+<span class="lnr"> 60 </span><span class="Statement">function</span>! <span class="Special">s:</span>hifg<span class="Special">(</span>group,guifg,first,second,<span class="Statement">...</span><span class="Special">)</span>
+<span class="lnr"> 61 </span>    <span class="Statement">if</span> <span class="Identifier">a:0</span> <span class="Statement">&amp;&amp;</span> &amp;t_Co <span class="Statement">==</span> <span class="Constant">256</span>
+<span class="lnr"> 62 </span>        <span class="Statement">let</span> ctermfg <span class="Statement">=</span> <span class="Identifier">a:1</span>
+<span class="lnr"> 63 </span>    <span class="Statement">else</span>
+<span class="lnr"> 64 </span>        <span class="Statement">let</span> ctermfg <span class="Statement">=</span> <span class="Normal">s:choose</span><span class="Special">(</span><span class="Identifier">a:first</span>,<span class="Identifier">a:second</span><span class="Special">)</span>
+<span class="lnr"> 65 </span>    <span class="Statement">endif</span>
+<span class="lnr"> 66 </span>    <span class="Statement">exe</span> <span class="String">&quot;highlight &quot;</span><span class="Statement">.</span><span class="Identifier">a:group</span><span class="Statement">.</span><span class="String">&quot; guifg=&quot;</span><span class="Statement">.</span><span class="Identifier">a:guifg</span><span class="Statement">.</span><span class="String">&quot; ctermfg=&quot;</span><span class="Statement">.</span>ctermfg
+<span class="lnr"> 67 </span><span class="Statement">endfunction</span>
+<span class="lnr"> 68 </span>
+<span class="lnr"> 69 </span><span class="Statement">function</span>! <span class="Special">s:</span>hibg<span class="Special">(</span>group,guibg,first,second<span class="Special">)</span>
+<span class="lnr"> 70 </span>    <span class="Statement">let</span> ctermbg <span class="Statement">=</span> <span class="Normal">s:choose</span><span class="Special">(</span><span class="Identifier">a:first</span>,<span class="Identifier">a:second</span><span class="Special">)</span>
+<span class="lnr"> 71 </span>    <span class="Statement">exe</span> <span class="String">&quot;highlight &quot;</span><span class="Statement">.</span><span class="Identifier">a:group</span><span class="Statement">.</span><span class="String">&quot; guibg=&quot;</span><span class="Statement">.</span><span class="Identifier">a:guibg</span><span class="Statement">.</span><span class="String">&quot; ctermbg=&quot;</span><span class="Statement">.</span>ctermbg
+<span class="lnr"> 72 </span><span class="Statement">endfunction</span>
+<span class="lnr"> 73 </span>
+<span class="lnr"> 74 </span><span class="Statement">hi</span> <span class="Statement">link</span> railsMethod         <span class="Type">PreProc</span>
+<span class="lnr"> 75 </span><span class="Statement">hi</span> <span class="Statement">link</span> rubyDefine          <span class="Type">Keyword</span>
+<span class="lnr"> 76 </span><span class="Statement">hi</span> <span class="Statement">link</span> rubySymbol          <span class="Type">Constant</span>
+<span class="lnr"> 77 </span><span class="Statement">hi</span> <span class="Statement">link</span> rubyAccess          rubyMethod
+<span class="lnr"> 78 </span><span class="Statement">hi</span> <span class="Statement">link</span> rubyAttribute       rubyMethod
+<span class="lnr"> 79 </span><span class="Statement">hi</span> <span class="Statement">link</span> rubyEval            rubyMethod
+<span class="lnr"> 80 </span><span class="Statement">hi</span> <span class="Statement">link</span> rubyException       rubyMethod
+<span class="lnr"> 81 </span><span class="Statement">hi</span> <span class="Statement">link</span> rubyInclude         rubyMethod
+<span class="lnr"> 82 </span><span class="Statement">hi</span> <span class="Statement">link</span> rubyStringDelimiter rubyString
+<span class="lnr"> 83 </span><span class="Statement">hi</span> <span class="Statement">link</span> rubyRegexp          Regexp
+<span class="lnr"> 84 </span><span class="Statement">hi</span> <span class="Statement">link</span> rubyRegexpDelimiter rubyRegexp
+<span class="lnr"> 85 </span><span class="Comment">&quot;hi link rubyConstant        Variable</span>
+<span class="lnr"> 86 </span><span class="Comment">&quot;hi link rubyGlobalVariable  Variable</span>
+<span class="lnr"> 87 </span><span class="Comment">&quot;hi link rubyClassVariable   Variable</span>
+<span class="lnr"> 88 </span><span class="Comment">&quot;hi link rubyInstanceVariable Variable</span>
+<span class="lnr"> 89 </span><span class="Statement">hi</span> <span class="Statement">link</span> javascriptRegexpString  Regexp
+<span class="lnr"> 90 </span><span class="Statement">hi</span> <span class="Statement">link</span> javascriptNumber        <span class="Type">Number</span>
+<span class="lnr"> 91 </span><span class="Statement">hi</span> <span class="Statement">link</span> javascriptNull          <span class="Type">Constant</span>
+<span class="lnr"> 92 </span><span class="Statement">highlight</span> <span class="Statement">link</span> diffAdded        <span class="Type">String</span>
+<span class="lnr"> 93 </span><span class="Statement">highlight</span> <span class="Statement">link</span> diffRemoved      <span class="Type">Statement</span>
+<span class="lnr"> 94 </span><span class="Statement">highlight</span> <span class="Statement">link</span> diffLine         <span class="Type">PreProc</span>
+<span class="lnr"> 95 </span><span class="Statement">highlight</span> <span class="Statement">link</span> diffSubname      <span class="Type">Comment</span>
+<span class="lnr"> 96 </span>
+<span class="lnr"> 97 </span><span class="Statement">call</span> <span class="Normal">s:hifg</span><span class="Special">(</span><span class="String">&quot;Normal&quot;</span>,<span class="String">&quot;#EEEEEE&quot;</span>,<span class="String">&quot;White&quot;</span>,<span class="Constant">87</span><span class="Special">)</span>
+<span class="lnr"> 98 </span><span class="Statement">if</span> &amp;background <span class="Statement">==</span> <span class="String">&quot;light&quot;</span> <span class="Statement">||</span> <span class="Identifier">has</span><span class="Special">(</span><span class="String">&quot;gui_running&quot;</span><span class="Special">)</span>
+<span class="lnr"> 99 </span>    <span class="Statement">hi</span> Normal <span class="Type">guibg</span>=Black <span class="Type">ctermbg</span>=Black
+<span class="lnr">100 </span><span class="Statement">else</span>
+<span class="lnr">101 </span>    <span class="Statement">hi</span> Normal <span class="Type">guibg</span>=Black <span class="Type">ctermbg</span>=<span class="PreProc">NONE</span>
+<span class="lnr">102 </span><span class="Statement">endif</span>
+<span class="lnr">103 </span><span class="Statement">highlight</span> StatusLine    <span class="Type">guifg</span>=Black   <span class="Type">guibg</span>=<span class="Constant">#aabbee</span> <span class="Type">gui</span>=<span class="PreProc">bold</span> <span class="Type">ctermfg</span>=Black <span class="Type">ctermbg</span>=White  <span class="Type">cterm</span>=<span class="PreProc">bold</span>
+<span class="lnr">104 </span><span class="Statement">highlight</span> StatusLineNC  <span class="Type">guifg</span>=<span class="Constant">#444444</span> <span class="Type">guibg</span>=<span class="Constant">#aaaaaa</span> <span class="Type">gui</span>=<span class="PreProc">none</span> <span class="Type">ctermfg</span>=Black <span class="Type">ctermbg</span>=Grey   <span class="Type">cterm</span>=<span class="PreProc">none</span>
+<span class="lnr">105 </span><span class="Comment">&quot;if &amp;t_Co == 256</span>
+<span class="lnr">106 </span><span class="Comment">    &quot;highlight StatusLine ctermbg=117</span>
+<span class="lnr">107 </span><span class="Comment">&quot;else</span>
+<span class="lnr">108 </span><span class="Comment">    &quot;highlight StatusLine ctermbg=43</span>
+<span class="lnr">109 </span><span class="Comment">&quot;endif</span>
+<span class="lnr">110 </span>
+<span class="lnr">111 </span><span class="Statement">highlight</span> <span class="Type">Ignore</span>        <span class="Type">ctermfg</span>=Black
+<span class="lnr">112 </span><span class="Statement">highlight</span> WildMenu      <span class="Type">guifg</span>=Black   <span class="Type">guibg</span>=<span class="Constant">#ffff00</span> <span class="Type">gui</span>=<span class="PreProc">bold</span> <span class="Type">ctermfg</span>=Black <span class="Type">ctermbg</span>=Yellow <span class="Type">cterm</span>=<span class="PreProc">bold</span>
+<span class="lnr">113 </span><span class="Statement">highlight</span> Cursor        <span class="Type">guifg</span>=Black <span class="Type">guibg</span>=White <span class="Type">ctermfg</span>=Black <span class="Type">ctermbg</span>=White
+<span class="lnr">114 </span><span class="Statement">highlight</span> CursorLine    <span class="Type">guibg</span>=<span class="Constant">#333333</span> <span class="Type">guifg</span>=<span class="PreProc">NONE</span>
+<span class="lnr">115 </span><span class="Statement">highlight</span> CursorColumn  <span class="Type">guibg</span>=<span class="Constant">#333333</span> <span class="Type">guifg</span>=<span class="PreProc">NONE</span>
+<span class="lnr">116 </span><span class="Statement">highlight</span> ColorColumn   <span class="Type">guibg</span>=<span class="Constant">#333333</span> <span class="Type">guifg</span>=<span class="PreProc">NONE</span>
+<span class="lnr">117 </span><span class="Statement">highlight</span> NonText       <span class="Type">guifg</span>=<span class="Constant">#404040</span> <span class="Type">ctermfg</span>=<span class="Constant">8</span>
+<span class="lnr">118 </span><span class="Statement">highlight</span> SpecialKey    <span class="Type">guifg</span>=<span class="Constant">#404040</span> <span class="Type">ctermfg</span>=<span class="Constant">8</span>
+<span class="lnr">119 </span><span class="Statement">highlight</span> Directory     none
+<span class="lnr">120 </span><span class="Statement">high</span> <span class="Statement">link</span> <span class="Type">Directory</span>     <span class="Type">Identifier</span>
+<span class="lnr">121 </span><span class="Statement">highlight</span> ErrorMsg      <span class="Type">guibg</span>=Red <span class="Type">ctermbg</span>=DarkRed <span class="Type">guifg</span>=<span class="PreProc">NONE</span> <span class="Type">ctermfg</span>=<span class="PreProc">NONE</span>
+<span class="lnr">122 </span><span class="Statement">highlight</span> Search        <span class="Type">guifg</span>=<span class="PreProc">NONE</span> <span class="Type">ctermfg</span>=<span class="PreProc">NONE</span> <span class="Type">gui</span>=<span class="PreProc">none</span> <span class="Type">cterm</span>=<span class="PreProc">none</span>
+<span class="lnr">123 </span><span class="Statement">call</span> <span class="Normal">s:hibg</span><span class="Special">(</span><span class="String">&quot;Search&quot;</span>    ,<span class="String">&quot;#555555&quot;</span>,<span class="String">&quot;DarkBlue&quot;</span>,<span class="Constant">81</span><span class="Special">)</span>
+<span class="lnr">124 </span><span class="Statement">highlight</span> IncSearch     <span class="Type">guifg</span>=White <span class="Type">guibg</span>=Black <span class="Type">ctermfg</span>=White <span class="Type">ctermbg</span>=Black
+<span class="lnr">125 </span><span class="Statement">highlight</span> MoreMsg       <span class="Type">guifg</span>=<span class="Constant">#00AA00</span> <span class="Type">ctermfg</span>=Green
+<span class="lnr">126 </span><span class="Statement">highlight</span> LineNr        <span class="Type">guifg</span>=<span class="Constant">#DDEEFF</span> <span class="Type">ctermfg</span>=White
+<span class="lnr">127 </span><span class="Statement">call</span> <span class="Normal">s:hibg</span><span class="Special">(</span><span class="String">&quot;LineNr&quot;</span>    ,<span class="String">&quot;#222222&quot;</span>,<span class="String">&quot;DarkBlue&quot;</span>,<span class="Constant">80</span><span class="Special">)</span>
+<span class="lnr">128 </span><span class="Statement">highlight</span> Question      none
+<span class="lnr">129 </span><span class="Statement">high</span> <span class="Statement">link</span> <span class="Type">Question</span>      <span class="Type">MoreMsg</span>
+<span class="lnr">130 </span><span class="Statement">highlight</span> Title         <span class="Type">guifg</span>=Magenta <span class="Type">ctermfg</span>=Magenta
+<span class="lnr">131 </span><span class="Statement">highlight</span> VisualNOS     <span class="Type">gui</span>=<span class="PreProc">none</span> <span class="Type">cterm</span>=<span class="PreProc">none</span>
+<span class="lnr">132 </span><span class="Statement">call</span> <span class="Normal">s:hibg</span><span class="Special">(</span><span class="String">&quot;Visual&quot;</span>    ,<span class="String">&quot;#555577&quot;</span>,<span class="String">&quot;LightBlue&quot;</span>,<span class="Constant">83</span><span class="Special">)</span>
+<span class="lnr">133 </span><span class="Statement">call</span> <span class="Normal">s:hibg</span><span class="Special">(</span><span class="String">&quot;VisualNOS&quot;</span> ,<span class="String">&quot;#444444&quot;</span>,<span class="String">&quot;DarkBlue&quot;</span>,<span class="Constant">81</span><span class="Special">)</span>
+<span class="lnr">134 </span><span class="Statement">call</span> <span class="Normal">s:hibg</span><span class="Special">(</span><span class="String">&quot;MatchParen&quot;</span>,<span class="String">&quot;#1100AA&quot;</span>,<span class="String">&quot;DarkBlue&quot;</span>,<span class="Constant">18</span><span class="Special">)</span>
+<span class="lnr">135 </span><span class="Statement">highlight</span> WarningMsg    <span class="Type">guifg</span>=Red <span class="Type">ctermfg</span>=Red
+<span class="lnr">136 </span><span class="Statement">highlight</span> <span class="Type">Error</span>         <span class="Type">ctermbg</span>=DarkRed
+<span class="lnr">137 </span><span class="Statement">highlight</span> SpellBad      <span class="Type">ctermbg</span>=DarkRed
+<span class="lnr">138 </span><span class="Comment">&quot;</span> <span class="Todo">FIXME</span><span class="PreProc">:</span><span class="Comment"> Comments</span>
+<span class="lnr">139 </span><span class="Statement">highlight</span> SpellRare     <span class="Type">ctermbg</span>=DarkMagenta
+<span class="lnr">140 </span><span class="Statement">highlight</span> SpellCap      <span class="Type">ctermbg</span>=DarkBlue
+<span class="lnr">141 </span><span class="Statement">highlight</span> SpellLocal    <span class="Type">ctermbg</span>=DarkCyan
+<span class="lnr">142 </span>
+<span class="lnr">143 </span><span class="Statement">call</span> <span class="Normal">s:hibg</span><span class="Special">(</span><span class="String">&quot;Folded&quot;</span>    ,<span class="String">&quot;#110077&quot;</span>,<span class="String">&quot;DarkBlue&quot;</span>,<span class="Constant">17</span><span class="Special">)</span>
+<span class="lnr">144 </span><span class="Statement">call</span> <span class="Normal">s:hifg</span><span class="Special">(</span><span class="String">&quot;Folded&quot;</span>    ,<span class="String">&quot;#aaddee&quot;</span>,<span class="String">&quot;LightCyan&quot;</span>,<span class="Constant">63</span><span class="Special">)</span>
+<span class="lnr">145 </span><span class="Statement">highlight</span> FoldColumn    none
+<span class="lnr">146 </span><span class="Statement">high</span> <span class="Statement">link</span> <span class="Type">FoldColumn</span>    <span class="Type">Folded</span>
+<span class="lnr">147 </span><span class="Statement">highlight</span> DiffAdd       <span class="Type">ctermbg</span>=<span class="Constant">4</span> <span class="Type">guibg</span>=DarkBlue
+<span class="lnr">148 </span><span class="Statement">highlight</span> DiffChange    <span class="Type">ctermbg</span>=<span class="Constant">5</span> <span class="Type">guibg</span>=DarkMagenta
+<span class="lnr">149 </span><span class="Statement">highlight</span> DiffDelete    <span class="Type">ctermfg</span>=<span class="Constant">12</span> <span class="Type">ctermbg</span>=<span class="Constant">6</span> <span class="Type">gui</span>=<span class="PreProc">bold</span> <span class="Type">guifg</span>=Blue <span class="Type">guibg</span>=DarkCyan
+<span class="lnr">150 </span><span class="Statement">highlight</span> DiffText      <span class="Type">ctermbg</span>=DarkRed
+<span class="lnr">151 </span><span class="Statement">highlight</span> DiffText      <span class="Type">cterm</span>=<span class="PreProc">bold</span> <span class="Type">ctermbg</span>=<span class="Constant">9</span> <span class="Type">gui</span>=<span class="PreProc">bold</span> <span class="Type">guibg</span>=Red
+<span class="lnr">152 </span>
+<span class="lnr">153 </span><span class="Statement">highlight</span> Pmenu         <span class="Type">guifg</span>=White <span class="Type">ctermfg</span>=White <span class="Type">gui</span>=<span class="PreProc">bold</span> <span class="Type">cterm</span>=<span class="PreProc">bold</span>
+<span class="lnr">154 </span><span class="Statement">highlight</span> PmenuSel      <span class="Type">guifg</span>=White <span class="Type">ctermfg</span>=White <span class="Type">gui</span>=<span class="PreProc">bold</span> <span class="Type">cterm</span>=<span class="PreProc">bold</span>
+<span class="lnr">155 </span><span class="Statement">call</span> <span class="Normal">s:hibg</span><span class="Special">(</span><span class="String">&quot;Pmenu&quot;</span>     ,<span class="String">&quot;#000099&quot;</span>,<span class="String">&quot;Blue&quot;</span>,<span class="Constant">18</span><span class="Special">)</span>
+<span class="lnr">156 </span><span class="Statement">call</span> <span class="Normal">s:hibg</span><span class="Special">(</span><span class="String">&quot;PmenuSel&quot;</span>  ,<span class="String">&quot;#5555ff&quot;</span>,<span class="String">&quot;DarkCyan&quot;</span>,<span class="Constant">39</span><span class="Special">)</span>
+<span class="lnr">157 </span><span class="Statement">highlight</span> PmenuSbar     <span class="Type">guibg</span>=Grey <span class="Type">ctermbg</span>=Grey
+<span class="lnr">158 </span><span class="Statement">highlight</span> PmenuThumb    <span class="Type">guibg</span>=White <span class="Type">ctermbg</span>=White
+<span class="lnr">159 </span><span class="Statement">highlight</span> TabLine       <span class="Type">gui</span>=<span class="PreProc">underline</span> <span class="Type">cterm</span>=<span class="PreProc">underline</span>
+<span class="lnr">160 </span><span class="Statement">call</span> <span class="Normal">s:hifg</span><span class="Special">(</span><span class="String">&quot;TabLine&quot;</span>   ,<span class="String">&quot;#bbbbbb&quot;</span>,<span class="String">&quot;LightGrey&quot;</span>,<span class="Constant">85</span><span class="Special">)</span>
+<span class="lnr">161 </span><span class="Statement">call</span> <span class="Normal">s:hibg</span><span class="Special">(</span><span class="String">&quot;TabLine&quot;</span>   ,<span class="String">&quot;#333333&quot;</span>,<span class="String">&quot;DarkGrey&quot;</span>,<span class="Constant">80</span><span class="Special">)</span>
+<span class="lnr">162 </span><span class="Statement">highlight</span> TabLineSel    <span class="Type">guifg</span>=White <span class="Type">guibg</span>=Black <span class="Type">ctermfg</span>=White <span class="Type">ctermbg</span>=Black
+<span class="lnr">163 </span><span class="Statement">highlight</span> TabLineFill   <span class="Type">gui</span>=<span class="PreProc">underline</span> <span class="Type">cterm</span>=<span class="PreProc">underline</span>
+<span class="lnr">164 </span><span class="Statement">call</span> <span class="Normal">s:hifg</span><span class="Special">(</span><span class="String">&quot;TabLineFill&quot;</span>,<span class="String">&quot;#bbbbbb&quot;</span>,<span class="String">&quot;LightGrey&quot;</span>,<span class="Constant">85</span><span class="Special">)</span>
+<span class="lnr">165 </span><span class="Statement">call</span> <span class="Normal">s:hibg</span><span class="Special">(</span><span class="String">&quot;TabLineFill&quot;</span>,<span class="String">&quot;#808080&quot;</span>,<span class="String">&quot;Grey&quot;</span>,<span class="Constant">83</span><span class="Special">)</span>
+<span class="lnr">166 </span>
+<span class="lnr">167 </span><span class="Statement">hi</span> <span class="Type">Type</span> <span class="Type">gui</span>=<span class="PreProc">none</span>
+<span class="lnr">168 </span><span class="Statement">hi</span> <span class="Type">Statement</span> <span class="Type">gui</span>=<span class="PreProc">none</span>
+<span class="lnr">169 </span><span class="Statement">if</span> !<span class="Identifier">has</span><span class="Special">(</span><span class="String">&quot;gui_mac&quot;</span><span class="Special">)</span>
+<span class="lnr">170 </span><span class="Comment">    &quot; Mac GUI degrades italics to ugly underlining.</span>
+<span class="lnr">171 </span>    <span class="Statement">hi</span> <span class="Type">Comment</span> <span class="Type">gui</span>=<span class="PreProc">italic</span>
+<span class="lnr">172 </span>    <span class="Statement">hi</span> railsUserClass  <span class="Type">gui</span>=<span class="PreProc">italic</span>
+<span class="lnr">173 </span>    <span class="Statement">hi</span> railsUserMethod <span class="Type">gui</span>=<span class="PreProc">italic</span>
+<span class="lnr">174 </span><span class="Statement">endif</span>
+<span class="lnr">175 </span><span class="Statement">hi</span> <span class="Type">Identifier</span> <span class="Type">cterm</span>=<span class="PreProc">none</span>
+<span class="lnr">176 </span><span class="Comment">&quot; Commented numbers at the end are *old* 256 color values</span>
+<span class="lnr">177 </span><span class="Comment">&quot;highlight PreProc       guifg=#EDF8F9</span>
+<span class="lnr">178 </span><span class="Statement">call</span> <span class="Normal">s:hifg</span><span class="Special">(</span><span class="String">&quot;Comment&quot;</span>        ,<span class="String">&quot;#9933CC&quot;</span>,<span class="String">&quot;DarkMagenta&quot;</span>,<span class="Constant">34</span><span class="Special">)</span> <span class="Comment">&quot; 92</span>
+<span class="lnr">179 </span><span class="Comment">&quot; 26 instead?</span>
+<span class="lnr">180 </span><span class="Statement">call</span> <span class="Normal">s:hifg</span><span class="Special">(</span><span class="String">&quot;Constant&quot;</span>       ,<span class="String">&quot;#339999&quot;</span>,<span class="String">&quot;DarkCyan&quot;</span>,<span class="Constant">21</span><span class="Special">)</span> <span class="Comment">&quot; 30</span>
+<span class="lnr">181 </span><span class="Statement">call</span> <span class="Normal">s:hifg</span><span class="Special">(</span><span class="String">&quot;rubyNumber&quot;</span>     ,<span class="String">&quot;#CCFF33&quot;</span>,<span class="String">&quot;Yellow&quot;</span>,<span class="Constant">60</span><span class="Special">)</span> <span class="Comment">&quot; 190</span>
+<span class="lnr">182 </span><span class="Statement">call</span> <span class="Normal">s:hifg</span><span class="Special">(</span><span class="String">&quot;String&quot;</span>         ,<span class="String">&quot;#66FF00&quot;</span>,<span class="String">&quot;LightGreen&quot;</span>,<span class="Constant">44</span>,<span class="Constant">82</span><span class="Special">)</span> <span class="Comment">&quot; 82</span>
+<span class="lnr">183 </span><span class="Statement">call</span> <span class="Normal">s:hifg</span><span class="Special">(</span><span class="String">&quot;Identifier&quot;</span>     ,<span class="String">&quot;#FFCC00&quot;</span>,<span class="String">&quot;Yellow&quot;</span>,<span class="Constant">72</span><span class="Special">)</span> <span class="Comment">&quot; 220</span>
+<span class="lnr">184 </span><span class="Statement">call</span> <span class="Normal">s:hifg</span><span class="Special">(</span><span class="String">&quot;Statement&quot;</span>      ,<span class="String">&quot;#FF6600&quot;</span>,<span class="String">&quot;Brown&quot;</span>,<span class="Constant">68</span><span class="Special">)</span> <span class="Comment">&quot; 202</span>
+<span class="lnr">185 </span><span class="Statement">call</span> <span class="Normal">s:hifg</span><span class="Special">(</span><span class="String">&quot;PreProc&quot;</span>        ,<span class="String">&quot;#AAFFFF&quot;</span>,<span class="String">&quot;LightCyan&quot;</span>,<span class="Constant">47</span><span class="Special">)</span> <span class="Comment">&quot; 213</span>
+<span class="lnr">186 </span><span class="Statement">call</span> <span class="Normal">s:hifg</span><span class="Special">(</span><span class="String">&quot;railsUserMethod&quot;</span>,<span class="String">&quot;#AACCFF&quot;</span>,<span class="String">&quot;LightCyan&quot;</span>,<span class="Constant">27</span><span class="Special">)</span>
+<span class="lnr">187 </span><span class="Statement">call</span> <span class="Normal">s:hifg</span><span class="Special">(</span><span class="String">&quot;Type&quot;</span>           ,<span class="String">&quot;#AAAA77&quot;</span>,<span class="String">&quot;Grey&quot;</span>,<span class="Constant">57</span><span class="Special">)</span> <span class="Comment">&quot; 101</span>
+<span class="lnr">188 </span><span class="Statement">call</span> <span class="Normal">s:hifg</span><span class="Special">(</span><span class="String">&quot;railsUserClass&quot;</span> ,<span class="String">&quot;#AAAAAA&quot;</span>,<span class="String">&quot;Grey&quot;</span>,<span class="Constant">7</span><span class="Special">)</span> <span class="Comment">&quot; 101</span>
+<span class="lnr">189 </span><span class="Statement">call</span> <span class="Normal">s:hifg</span><span class="Special">(</span><span class="String">&quot;Special&quot;</span>        ,<span class="String">&quot;#33AA00&quot;</span>,<span class="String">&quot;DarkGreen&quot;</span>,<span class="Constant">24</span><span class="Special">)</span> <span class="Comment">&quot; 7</span>
+<span class="lnr">190 </span><span class="Statement">call</span> <span class="Normal">s:hifg</span><span class="Special">(</span><span class="String">&quot;Regexp&quot;</span>         ,<span class="String">&quot;#44B4CC&quot;</span>,<span class="String">&quot;DarkCyan&quot;</span>,<span class="Constant">21</span><span class="Special">)</span> <span class="Comment">&quot; 74</span>
+<span class="lnr">191 </span><span class="Statement">call</span> <span class="Normal">s:hifg</span><span class="Special">(</span><span class="String">&quot;rubyMethod&quot;</span>     ,<span class="String">&quot;#DDE93D&quot;</span>,<span class="String">&quot;Yellow&quot;</span>,<span class="Constant">77</span><span class="Special">)</span> <span class="Comment">&quot; 191</span>
+<span class="lnr">192 </span><span class="Comment">&quot;highlight railsMethod   guifg=#EE1122 ctermfg=1</span>
+</pre>
+</body>
+</html>
