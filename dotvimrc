@@ -1,0 +1,505 @@
+call pathogen#infect()
+
+set bg=dark
+
+"Use Vim settings, rather then Vi settings (much better!).
+set nocompatible
+
+" Turn on the verboseness to see everything vim is doing.
+"set verbose=9
+
+" allow backspacing over everything in insert mode
+set backspace=indent,eol,start
+
+" I like 4 spaces for indenting
+set shiftwidth=4
+
+" I like 4 stops
+set tabstop=4
+
+" Spaces instead of tabs
+set expandtab
+
+" Always  set auto indenting on
+set autoindent
+
+" select when using the mouse
+set selectmode=mouse
+
+set hidden                        " Handle multiple buffers better.
+
+set wildmenu                      " Enhanced command line completion.
+"set wildmode=list:longest         " Complete files like a shell.
+
+"Always show tabline
+"set tabline=2
+"tab shortcuts
+map  <C-l> :tabn<CR>
+map  <C-h> :tabp<CR>
+map  <C-n> :tabnew<CR>
+
+" do not keep a backup files 
+set nobackup
+set nowritebackup
+
+" keep 50 lines of command line history
+set history=50  
+
+" show the cursor position all the time
+set ruler       
+
+" show (partial) commands
+set showcmd     
+
+" do incremental searches (annoying but handy);
+set incsearch 
+
+" Show  tab characters. Visual Whitespace.
+"set list
+"set listchars=tab:>.
+
+" Set ignorecase on
+set ignorecase
+
+" smart search (override 'ic' when pattern has uppers)
+set scs
+
+" Set 'g' substitute flag on
+" set gdefault
+
+" Set status line
+set statusline=%{fugitive#statusline()}\ [%02n]\ %f\ %(\[%M%R%H]%)%=\ %4l,%02c%2V\ %P%*
+"set statusline=[%n]\ %<%.99f\ %h%w%m%r%y\ %{fugitive#statusline()}%{exists('*CapsLockStatusline')?CapsLockStatusline():''}%=%-16(\ %l,%c-%v\ %)%P
+
+" Always display a status line at the bottom of the window
+set laststatus=2
+
+" Set vim to use 'short messages'.
+" set shortmess=a
+
+
+" Minimal number of screen lines to keep above and below the cursor.
+" This keeps the cursor always in the vertical middle of the screen.
+set scrolloff=999
+
+" " Daniel whitespace marker
+ highlight WhitespaceEOL ctermbg=red guibg=red
+ match WhitespaceEOL /\s\+$/
+" highlight LineTooLong cterm=bold ctermbg=red guibg=LightYellow
+" match DiffAdd '\%>80v.*'
+" " Highlight search
+" set hls
+" " Don't break up long lines, but visually wrap them.
+" set textwidth=0
+" set wrap
+"
+" " set list mode and appropriate chars to display tabs, end of lines,
+" " wrapping, or trailing spaces
+" set list
+" set listchars=tab:>-,trail:.,extends:>,precedes:<
+"
+set nu               " Line number
+nmap <C-N><C-N> :set invnumber<CR>
+set ruler            " Ruler
+" set cursorcolumn     " Show current column
+set nostartofline    " Leave my cursor where it was
+set incsearch
+
+" Open the follwoing word (function defnition) in new vertical split
+" window
+"
+map <C-w>b :vertical wincmd i
+
+augroup filetypedetect
+    au BufNewFile,BufRead .tmux.conf*,tmux.conf* setf tmux
+augroup END 
+
+" OPTIONAL: Starting with Vim 7, the filetype of empty .tex files defaults to
+" 'plaintex' instead of 'tex', which results in vim-latex not being loaded.
+" The following changes the default filetype back to 'tex':
+let g:tex_flavor='latex'
+
+
+"
+" Insert two spaces after a period with every joining of lines.
+" I like this as it makes reading texts easier (for me, at least).
+set joinspaces
+
+" showmatch: Show the matching bracket for the last ')'?
+set showmatch
+
+" allow tilde (~) to act as an operator -- ~w, etc.
+set notildeop
+
+" highlight strings inside C comments
+let c_comment_strings=1
+
+" Commands for :Explore
+let g:explVertical=1    " open vertical split winow
+let g:explSplitRight=1  " Put new window to the right of the explorer
+let g:explStartRight=0  " new windows go to right of explorer window
+
+" Switch syntax highlighting on, when the terminal has colors
+" Also switch on highlighting the last used search pattern.
+if &t_Co > 2 || has("gui_running")
+  syntax on
+  set hlsearch
+endif
+
+
+set shell=/bin/bash
+
+" ************************************************************************
+" C O M M A N D S
+"
+
+"switch to directory of current file
+command! CD cd %:p:h
+
+" ************************************************************************
+" K E Y   M A P P I N G S
+"
+map <Leader>e :Explore<cr>
+map <Leader>s :Sexplore<cr> 
+
+" pressing < or > will let you indent/unident selected lines
+vnoremap < <gv
+vnoremap > >gv
+
+" map ,L mz1G/Last modified:/e<Cr>CYDATETIME<Esc>`z
+map ,L    :let @z=TimeStamp()<Cr>"zpa
+map ,datetime :let @z=strftime("%d %b %Y %X")<Cr>"zpa
+map ,date :let @z=strftime("%d %b %Y")<Cr>"zpa
+
+" Map <c-s> to write current buffer.
+map <c-s> :w<cr>
+imap <c-s> <c-o><c-s>
+imap <c-s> <esc><c-s>
+
+" Buffer naviation
+map <M-Left> :bprevious<CR>
+map <M-Right> :bnext<CR>
+
+" Select all.
+"map <c-a> ggVG
+
+" Undo in insert mode.
+imap <c-z> <c-o>u
+
+" Toggle paste mode, won't work in python files, python debugger conflict
+nnoremap <F7> :set invpaste paste?<CR>
+set pastetoggle=<F7>
+
+" Load my color scheme 
+"colorscheme slack
+
+" ************************************************************************
+" B E G I N  A U T O C O M M A N D S
+"
+if has("autocmd")
+
+  " Enable file type detection.
+  " Use the default filetype settings, so that mail gets 'tw' set to 72,
+  " 'cindent' is on in C files, etc.
+  " Also load indent files, to automatically do language-dependent indenting.
+  filetype plugin indent on
+
+  " When editing a file, always jump to the last known cursor position.
+  " Don't do it when the position is invalid or when inside an event handler
+  " (happens when dropping a file on gvim).
+  autocmd BufReadPost *
+    \ if line("'\"") > 0 && line("'\"") <= line("$") |
+    \   exe "normal g`\"" |
+    \ endif
+
+  " Normally don't automatically format 'text' as it is typed, only do this
+  " with comments, at 79 characters.
+  au BufNewFile,BufEnter *.c,*.h,*.java,*.jsp set formatoptions-=t tw=79
+
+  " add an autocommand to update an existing time stamp when writing the file 
+  " It uses the functions above to replace the time stamp and restores cursor 
+  " position afterwards (this is from the FAQ) 
+  autocmd BufWritePre,FileWritePre *   ks|call UpdateTimeStamp()|'s
+
+
+endif " has("autocmd")
+
+" ************************************************************************
+" A B B R E V I A T I O N S 
+"
+abbr #b /************************************************************************
+abbr #e  ************************************************************************/
+
+abbr hosts /etc/hosts
+
+" abbreviation to manually enter a timestamp. Just type YTS in insert mode 
+iab YTS <C-R>=TimeStamp()<CR>
+
+" Date/Time stamps
+" %a - Day of the week
+" %b - Month
+" %d - Day of the month
+" %Y - Year
+" %H - Hour
+" %M - Minute
+" %S - Seconds
+" %Z - Time Zone
+iab YDATETIME <c-r>=strftime(": %a %b %d, %Y %H:%M:%S %Z")<cr>
+
+
+" ************************************************************************
+"  F U N C T I O N S
+"
+
+" first add a function that returns a time stamp in the desired format 
+if !exists("*TimeStamp")
+    fun TimeStamp()
+        return "Last-modified: " . strftime("%d %b %Y %X")
+    endfun
+endif
+
+" searches the first ten lines for the timestamp and updates using the
+" TimeStamp function
+if !exists("*UpdateTimeStamp")
+function! UpdateTimeStamp() 
+   " Do the updation only if the current buffer is modified 
+   if &modified == 1 
+       " go to the first line
+       exec "1" 
+      " Search for Last modified: 
+      let modified_line_no = search("Last-modified:") 
+      if modified_line_no != 0 && modified_line_no < 10 
+         " There is a match in first 10 lines 
+         " Go to the : in modified: 
+         exe "s/Last-modified: .*/" . TimeStamp()
+     endif
+ endif
+ endfunction
+endif
+
+"--- OmniCppComplete ---
+" -- required --
+set nocp " non vi compatible mode
+filetype plugin on " enable plugins
+filetype on
+"configure tags - add additional tags here or comment out not-used ones
+set tags+=~/.vim/tags/cpp
+set tags+=~/.vim/tags/gl
+set tags+=~/.vim/tags/sdl
+set tags+=~/.vim/tags/qt4
+set tags+=~/.vim/tags/gtk2
+set tags+=~/.vim/tags/gtk3
+set tags+=./tags
+
+" build tags of your own project with Ctrl-F12
+map <C-F12> :!ctags -R --sort=yes --c++-kinds=+pl --fields=+iaS --extra=+q .<CR><CR>
+
+" OmniCppComplete
+let OmniCpp_NamespaceSearch = 1
+let OmniCpp_GlobalScopeSearch = 1
+let OmniCpp_ShowAccess = 1
+let OmniCpp_ShowPrototypeInAbbr = 1 " show function parameters
+let OmniCpp_MayCompleteDot = 1 " autocomplete after .
+let OmniCpp_MayCompleteArrow = 1 " autocomplete after ->
+let OmniCpp_MayCompleteScope = 1 " autocomplete after ::
+let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"]
+" automatically open and close the popup menu / preview window
+au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
+set completeopt=menuone,menu,longest,preview
+
+
+set ofu=syntaxcomplete#Complete
+
+if v:version >= 600
+  filetype plugin on
+  filetype indent on
+else
+  filetype on
+endif
+
+"if v:version >= 700
+"  set omnifunc=syntaxcomplete#Complete " override built-in C omnicomplete with C++ OmniCppComplete plugin
+"  let OmniCpp_GlobalScopeSearch   = 1
+"  let OmniCpp_DisplayMode         = 1
+"  let OmniCpp_ShowScopeInAbbr     = 0 "do not show namespace in pop-up
+"  let OmniCpp_ShowPrototypeInAbbr = 1 "show prototype in pop-up
+"  let OmniCpp_ShowAccess          = 1 "show access in pop-up
+"  let OmniCpp_SelectFirstItem     = 1 "select first item in pop-up
+"  set completeopt=menuone,menu,longest
+"endif
+
+autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
+autocmd FileType css set omnifunc=csscomplete#CompleteCSS
+
+if version >= 700
+  let g:SuperTabDefaultCompletionType = "context"
+  highlight   clear
+  highlight   Pmenu         ctermfg=0 ctermbg=2
+  highlight   PmenuSel      ctermfg=0 ctermbg=7
+  highlight   PmenuSbar     ctermfg=7 ctermbg=0
+  highlight   PmenuThumb    ctermfg=0 ctermbg=7
+endif
+
+"function! UpdateTags()
+"  execute ":!ctags -R --language=c++ --c++-kinds=+p --fields=+iaS --extra=+q ./"
+"  echohl StatusLine | echo "C/C++ tag updated" | echohl None
+"endfunction
+"nnoremap <F4> :call UpdateTags()
+
+autocmd FileType python set omnifunc=pythoncomplete#Complete
+
+let g:pydiction_location = '/home/muneeb/.vim/complete-dict'
+
+" bash-support
+let g:BASH_AuthorName   = 'FirstName LastName'
+let g:BASH_Email        = 'you@email.com'
+"let g:BASH_Company      = 'Open Source Corporation'
+
+"Ultimate Python setup
+if !exists("autocommands_loaded")
+  let autocommands_loaded = 1
+  autocmd BufRead,BufNewFile,FileReadPost *.py source ~/.vim/python
+endif
+
+" This beauty remembers where you were the last time you edited the file, and returns to the same position.
+au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
+
+
+"if $COLORTERM == 'gnome-terminal'
+      set t_Co=256
+"endif
+
+"folding settings
+set foldmethod=syntax   "fold based on syntax, other indent
+set foldnestmax=10      "deepest fold is 10 levels
+set nofoldenable        "dont fold by default
+"set foldlevel=1         "this is just what i use
+
+
+colorscheme vividchalk
+
+" Dispaly inclomplete commands, modes
+set showcmd
+set showmode
+
+let g:LustyJugglerSuppressRubyWarning = 1
+
+" cscope
+
+if has("cscope")
+		set csprg=/usr/bin/cscope
+		set csto=0
+		"set cst
+		set nocsverb
+		" add any database in current directory
+		if filereadable("cscope.out")
+		    cs add cscope.out
+		" else add database pointed to by environment
+		elseif $CSCOPE_DB != ""
+		    cs add $CSCOPE_DB
+		endif
+		set csverb
+endif
+
+map <C-_> :cstag <C-R>=expand("<cword>")<CR><CR>
+
+map g<C-]> :cs find 3 <C-R>=expand("<cword>")<CR><CR>
+map g<C-\> :cs find 0 <C-R>=expand("<cword>")<CR><CR>
+
+map <F2> :NERDTreeToggle<CR>
+
+map <F3> :TlistToggle<CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Moving around, tabs and buffers
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Map space to / (search) and c-space to ? (backgwards search)
+"map <space> /
+"map <c-space> ?
+"map <silent> <leader><cr> :noh<cr>
+
+" Smart way to move btw. windows
+"map <C-j> <C-W>j
+"map <C-k> <C-W>k
+"map <C-h> <C-W>h
+"map <C-l> <C-W>l
+
+" Close the current buffer
+map <leader>bd :Bclose<cr>
+
+" Close all the buffers
+map <leader>ba :1,300 bd!<cr>
+
+" Use the arrows to something usefull
+"map <right> :bn<cr>
+"map <left> :bp<cr>
+
+" Tab configuration
+map <leader>tn :tabnew<cr>
+map <leader>te :tabedit
+map <leader>tc :tabclose<cr>
+map <leader>tm :tabmove
+
+" When pressing <leader>cd switch to the directory of the open buffer
+map <leader>cd :cd %:p:h<cr>
+
+
+command! Bclose call <SID>BufcloseCloseIt()
+function! <SID>BufcloseCloseIt()
+   let l:currentBufNum = bufnr("%")
+   let l:alternateBufNum = bufnr("#")
+
+   if buflisted(l:alternateBufNum)
+     buffer #
+   else
+     bnext
+   endif
+
+   if bufnr("%") == l:currentBufNum
+     new
+   endif
+
+   if buflisted(l:currentBufNum)
+     execute("bdelete! ".l:currentBufNum)
+   endif
+endfunction
+
+" Specify the behavior when switching between buffers 
+"try
+"  set switchbuf=usetab
+"  set stal=2
+"catch
+"endtry
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Editing mappings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"Remap VIM 0
+"map 0 ^
+
+"Move a line of text using ALT+[jk] or Comamnd+[jk] on mac
+nmap <M-j> mz:m+<cr>`z
+nmap <M-k> mz:m-2<cr>`z
+vmap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
+vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
+
+
+"Delete trailing white space, useful for Python ;)
+func! DeleteTrailingWS()
+  exe "normal mz"
+  %s/\s\+$//ge
+  exe "normal `z"
+endfunc
+autocmd BufWrite *.py :call DeleteTrailingWS()
+
+" json bindings
+augroup json_autocmd 
+  autocmd! 
+  autocmd FileType json set autoindent 
+  autocmd FileType json set formatoptions=tcq2l 
+  autocmd FileType json set textwidth=78 shiftwidth=2 
+  autocmd FileType json set softtabstop=2 tabstop=8 
+  autocmd FileType json set expandtab 
+  autocmd FileType json set foldmethod=syntax 
+augroup END 
